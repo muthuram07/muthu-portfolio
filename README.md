@@ -1,16 +1,73 @@
-# React + Vite
+# 🚀 Muthuraman's Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern developer portfolio showcasing projects, certifications, and skills in **Java**, **React**, and **microservices**.  
+This portfolio highlights both technical expertise and creative interests, built with clean design and interactive sections.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- **Dynamic Hero Section**  
+  Hacker‑style typing animation introducing me as *Muthuraman*, a Java Developer, Problem‑Solver, Innovator, and Visionary.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **About Section**  
+  Concise highlights of my Computer Science foundation, technical skills, and creative passions like photography, traveling, and movies.
 
-## Expanding the ESLint configuration
+- **Projects Showcase**  
+  Includes featured projects such as **Mithran Millets**, a React‑based e‑commerce platform powered by five microservices with JWT security.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Certifications**  
+  - Fundamentals of Java — Amigoscode  
+  - Microsoft Azure Fundamentals  
+
+- **Contact Section**  
+  Premium design with location, phone number, clickable email (`mailto:` opens your mailbox), and social links (Instagram, GitHub, LinkedIn) displayed as icons.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, Framer Motion  
+- **Backend:** Microservices architecture, JWT authentication  
+- **Styling:** Gradient backgrounds, monospace hacker font, premium iconography  
+- **Deployment:** GitHub Pages / Vercel / Netlify  
+
+---
+
+## 📂 Project Highlight: Mithran Millets
+
+**Mithran Millets** is a React‑based e‑commerce platform promoting healthy millet products.  
+Built with five microservices secured by JWT authentication, it enables seamless shopping, secure payments, efficient inventory management, and engaging customer experiences.
+
+---
+
+## 📜 Certifications
+
+- **Fundamentals of Java — Amigoscode**  
+  Solid understanding of core Java concepts, OOP, data structures, and algorithms.  
+
+- **Microsoft Azure Fundamentals — Microsoft**  
+  Building expertise in cloud concepts, core Azure services, security, and compliance.  
+
+---
+
+## 📬 Contact
+
+- 📍 Madurai, Tamil Nadu  
+- 📞 9087615536  
+- ✉️ [muthuramansaravanan31@gmail.com](mailto:muthuramansaravanan31@gmail.com)  
+- 🌐 [Instagram](https://www.instagram.com/muthu._.s/)  
+- 💻 [GitHub](https://github.com/muthuram07)  
+- 🔗 [LinkedIn](https://www.linkedin.com/in/muthuraman-saravanan)  
+
+---
+
+## ⚡ Quick Start
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/muthuram07/muthu-portfolio.git
+cd muthu-portfolio
+npm install
+npm run dev
