@@ -1,0 +1,95 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Responsive grid for section tiles */
+@media (max-width: 640px) {
+  #root {
+    padding: 1rem;
+  }
+
+  section {
+    padding: 2rem 0.5rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .card, .card * {
+    box-sizing: border-box;
+  }
+
+  /* ensure tiles stack nicely */
+  .card {
+    padding: 1rem !important;
+  }
+
+  /* Reduce heading sizes inside tiles */
+  .card h3 {
+    font-size: 1rem !important;
+  }
+
+  /* Make nav wrap on mobile */
+  .nav {
+    padding: 0.75rem 1rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .nav-links {
+    flex-wrap: wrap !important;
+    width: 100% !important;
+  }
+
+  .nav-link {
+    padding: 0.5rem !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+
