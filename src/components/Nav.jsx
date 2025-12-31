@@ -17,7 +17,7 @@ export default function Nav() {
               key={item}
               href={
                 item === "Resume"
-                  ? "https://drive.google.com/file/d/1EEO8RF_6gII9gyvI1Zct6_s_MA-VbRQC/view?usp=sharing"
+                  ? "https://drive.google.com/file/d/10o0OAMmTLDV5Nuj27DjlviyJvRFMJeue/view?usp=sharing"
                   : `#${item.toLowerCase()}`
               }
               target={item === "Resume" ? "_blank" : undefined}
@@ -32,3 +32,4 @@ export default function Nav() {
     </nav>
   );
 }
+
