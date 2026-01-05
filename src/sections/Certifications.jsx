@@ -1,8 +1,3 @@
-import React from 'react';
-import { certifications } from '../data/content.js';
-import * as styles from '../styles/card.css.ts';
-import AnimatedCard from '../components/AnimatedCard.jsx';
-
 export default function Certifications() {
   const directions = ['up', 'down', 'left', 'right'];
   return (
@@ -14,7 +9,7 @@ export default function Certifications() {
           display: 'grid',
           gap: '1.5rem',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          alignItems: 'start', // 👈 don't stretch vertically
+          alignItems: 'start',
         }}
       >
         {certifications.map((c, i) => (
@@ -28,28 +23,49 @@ export default function Certifications() {
             <AnimatedCard direction={directions[i % directions.length]}>
               <div
                 style={{
-                  height: '220px', // 👈 fixed height for all tiles (unchanged)
+                  height: '220px',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'flex-start',
+                  justifyContent: 'space-between', // 👈 Changed to push button to bottom
                 }}
               >
-                <h3 style={{ fontWeight: '600', fontSize: '1.1rem' }}>{c.name}</h3>
-                <p className={styles.subtext}>{c.provider}</p>
-                <p
+                <div>
+                  <h3 style={{ fontWeight: '600', fontSize: '1.1rem', color: '#111827' }}>{c.name}</h3>
+                  <p className={styles.subtext}>{c.provider}</p>
+                  <p
+                    style={{
+                      marginTop: '0.5rem',
+                      fontSize: '0.9rem',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: 'vertical',
+                    }}
+                    className={styles.subtext}
+                  >
+                    {c.description}
+                  </p>
+                </div>
+
+                {/* 👈 Added View Certificate Button */}
+                <div
                   style={{
-                    marginTop: '0.5rem',
-                    fontSize: '0.9rem',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 3, // clamp description to 3 lines
-                    WebkitBoxOrient: 'vertical',
+                    marginTop: '1rem',
+                    padding: '0.6rem 1rem',
+                    backgroundColor: '#3b82f6',
+                    color: 'white',
+                    textAlign: 'center',
+                    borderRadius: '6px',
+                    fontSize: '0.85rem',
+                    fontWeight: '600',
+                    transition: 'background-color 0.2s',
                   }}
-                  className={styles.subtext}
+                  onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#2563eb')}
+                  onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#3b82f6')}
                 >
-                  {c.description}
-                </p>
+                  View Certificate →
+                </div>
               </div>
             </AnimatedCard>
           </a>
