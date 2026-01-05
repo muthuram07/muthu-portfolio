@@ -1,33 +1,33 @@
 export const projects = [
   {
-    name: "Railway Reservation",
-    description:
-      "Schedules, seat availability, reservations, and cancellations powered by robust SQL backend.",
-  },
-  {
+    id: 1,
     name: "VegeMarket Analysis",
-    description:
-      "Predictive insights and analytics to help farmers plan crops and optimize revenue streams.",
+    description: "Predictive insights and analytics to help farmers plan crops and optimize revenue streams.",
+    link: "https://github.com/muthuram07/VegeMarket"
   },
   {
+    id: 2,
     name: "Agronomics",
-    description:
-      "Farm expense tracking, resource management, and disaster region identification for insurance claims.",
+    description: "Farm expense tracking, resource management, and disaster region identification for insurance claims.",
+    link: "https://github.com/muthuram07/Agronomics"
   },
   {
+    id: 3,
     name: "Employee Management System",
-    description:
-      "Microservices architecture for attendance, leave, shift scheduling, reporting, and role-based access control.",
+    description: "Microservices architecture for attendance, leave, shift scheduling, reporting, and role-based access control.",
+    link: "https://github.com/muthuram07/Employee-Management-System"
   },
   {
+    id: 4,
     name: "CSR Denial Bot",
-    description:
-      "AI-driven chatbot that explains claim denial codes, reasons, solutions, and recovery strategies.",
+    description: "AI-driven chatbot that explains claim denial codes, reasons, solutions, and recovery strategies.",
+    link: "https://github.com/muthuram07/CSR"
   },
   {
+    id: 5,
     name: "Mithran Millets (E‑commerce)",
-    description:
-      "A modern React-based e‑commerce platform for millet products, integrating 5 distinct microservices with JWT-secured APIs for authentication, order management, payments, inventory, and customer engagement.",
+    description: "A modern React-based e‑commerce platform for millet products, integrating 5 distinct microservices with JWT-secured APIs.",
+    link: "https://github.com/muthuram07/MithranMillets"
   },
 ];
 
