@@ -1,3 +1,7 @@
+import React from 'react';
+import { certifications } from '../data/content.js';
+import * as styles from '../styles/card.css.ts';
+import AnimatedCard from '../components/AnimatedCard.jsx';
 export default function Certifications() {
   const directions = ['up', 'down', 'left', 'right'];
   return (
