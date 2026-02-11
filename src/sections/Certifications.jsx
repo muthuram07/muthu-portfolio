@@ -1,41 +1,24 @@
 import React from 'react';
+import Tilt from 'react-parallax-tilt';
 import { certifications } from '../data/content.js';
-import * as styles from '../styles/card.css.ts';
-import AnimatedCard from '../components/AnimatedCard.jsx';
+import '../styles/grid.css';
 
 export default function Certifications() {
-  const directions = ['up', 'down', 'left', 'right'];
   return (
     <section style={{ padding: '4rem 2rem' }} id="certifications">
-      <h2 style={{ fontSize: '2rem', fontWeight: '700' }}>Certifications</h2>
-      <div
-        style={{
-          marginTop: '2rem',
-          display: 'grid',
-          gap: '1.5rem',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          alignItems: 'start', // 👈 don't stretch vertically
-        }}
-      >
+      <h2 style={{ fontSize: '2rem', fontWeight: '700', color: 'white' }}>Certifications</h2>
+      <div className="grid-container" style={{ marginTop: '2rem' }}>
         {certifications.map((c, i) => (
-          <a
-            key={i}
-            href={c.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: 'none' }}
-          >
-            <AnimatedCard direction={directions[i % directions.length]}>
-              <div
-                style={{
-                  height: '220px', // 👈 fixed height for all tiles (unchanged)
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'flex-start',
-                }}
-              >
+          <Tilt key={i} tiltMaxAngleX={10} tiltMaxAngleY={10} perspective={1000}>
+            <a
+              href={c.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none' }}
+            >
+              <div className="grid-item" style={{ height: '220px' }}>
                 <h3 style={{ fontWeight: '600', fontSize: '1.1rem' }}>{c.name}</h3>
-                <p className={styles.subtext}>{c.provider}</p>
+                <p>{c.provider}</p>
                 <p
                   style={{
                     marginTop: '0.5rem',
@@ -43,16 +26,15 @@ export default function Certifications() {
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     display: '-webkit-box',
-                    WebkitLineClamp: 3, // clamp description to 3 lines
+                    WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
                   }}
-                  className={styles.subtext}
                 >
                   {c.description}
                 </p>
               </div>
-            </AnimatedCard>
-          </a>
+            </a>
+          </Tilt>
         ))}
       </div>
     </section>

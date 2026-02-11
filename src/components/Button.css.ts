@@ -1,16 +1,17 @@
 import { style } from '@vanilla-extract/css';
+import { vars } from '../styles/theme.css';
 
 export const button = style({
-  padding: '0.6rem 1.2rem',
-  borderRadius: '9999px',
-  border: '1px solid #e5e7eb',
+  backgroundColor: vars.colors.electricIndigo,
+  color: vars.colors.pureWhite,
+  border: 'none',
+  padding: '0.75rem 1.5rem',
+  borderRadius: '0.5rem',
   cursor: 'pointer',
-  fontWeight: 500,
-  background: '#64748b',   // slate blue
-  color: '#fff',
-  transition: 'background 0.2s ease, transform 0.2s ease',
+  transition: 'all 0.3s ease',
+  boxShadow: `0 0 10px ${vars.colors.indigoGlow}`,
+
   ':hover': {
-    background: '#475569', // darker slate
-    transform: 'translateY(-2px)',
-  },
+    boxShadow: `0 0 20px ${vars.colors.indigoGlowHover}`,
+  }
 });

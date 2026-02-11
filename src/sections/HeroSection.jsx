@@ -1,6 +1,7 @@
 import HeroImage from "../components/HeroCharacter";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { vars } from "../styles/theme.css";
 
 export default function HeroSection() {
   const words = [
@@ -44,40 +45,37 @@ export default function HeroSection() {
         justifyContent: "space-between",
         alignItems: "center",
         padding: "4rem 2rem",
-        background: "linear-gradient(135deg, #f9fafb, #eef2ff)", // matches page
-        fontFamily: "'Fira Code', monospace", // hacker font
+        fontFamily: vars.font.code,
       }}
     >
       <div style={{ maxWidth: "50%" }}>
-        {/* Hacker typing effect */}
         <motion.h1
           style={{
             fontSize: "3rem",
             fontWeight: "700",
-            color: "#1f2937",
-            textShadow: "0 0 12px rgba(0,0,0,0.2)",
+            color: vars.colors.pureWhite,
+            textShadow: `0 0 15px ${vars.colors.indigoGlow}`,
           }}
           animate={{ opacity: [0.8, 1, 0.8] }}
           transition={{ repeat: Infinity, duration: 3 }}
         >
-          Hi, I’m <span style={{ color: "#0ea5e9" }}>{displayText}</span>
-          <span style={{ color: "#0ea5e9" }}>|</span>
+          Hi, I’m <span style={{ color: vars.colors.electricIndigo }}>{displayText}</span>
+          <span style={{ color: vars.colors.electricIndigo }}>|</span>
         </motion.h1>
 
-        {/* Clean professional tagline */}
         <motion.p
           style={{
             fontSize: "1.25rem",
-            color: "#4b5563",
+            color: vars.colors.slateGray,
             marginTop: "1rem",
             lineHeight: "1.8",
           }}
-          animate={{ opacity: [0.6, 1, 0.6] }}
+          animate={{ opacity: [0.7, 1, 0.7] }}
           transition={{ repeat: Infinity, duration: 4 }}
         >
-          Crafting <span style={{ color: "#0ea5e9" }}>innovative solutions</span> with{" "}
-          <span style={{ color: "#0ea5e9" }}>clean code</span> and{" "}
-          <span style={{ color: "#0ea5e9" }}>creative vision</span>.
+          Crafting <span style={{ color: vars.colors.cyberTurquoise }}>innovative solutions</span> with{" "}
+          <span style={{ color: vars.colors.cyberTurquoise }}>clean code</span> and{" "}
+          <span style={{ color: vars.colors.cyberTurquoise }}>creative vision</span>.
         </motion.p>
       </div>
 
