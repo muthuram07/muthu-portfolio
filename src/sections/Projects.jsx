@@ -16,6 +16,7 @@ export default function Projects() {
                 <span style={{ color: '#6b7280' }}>#{p.id}</span>
               </div>
               <p style={{ marginTop: '0.75rem', color: '#6b7280' }}>{p.description}</p>
+              
               <div style={{ marginTop: '1rem', display: 'flex', gap: '1rem' }}>
                 <a 
                   href={p.link} 
@@ -25,9 +26,23 @@ export default function Projects() {
                 >
                   View Project →
                 </a>
+
+                {/* Conditional Live Demo for CSR Denial Bot */}
                 {p.name === 'CSR Denial Bot' && (
                   <a 
                     href="https://csr-bot.netlify.app/" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    style={{ textDecoration: 'none', color: '#10b981', fontWeight: 'bold' }}
+                  >
+                    Live Demo →
+                  </a>
+                )}
+
+                {/* Added Conditional Live Demo for Agronomics */}
+                {p.name === 'Agronomics' && (
+                  <a 
+                    href="https://agronomics.vercel.app/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     style={{ textDecoration: 'none', color: '#10b981', fontWeight: 'bold' }}
