@@ -15,7 +15,7 @@ import {
     mobileNavLinkItem
 } from './TopNav.css.ts';
 
-const navItems = ["About", "Projects", "Skills", "Certifications", "Resume"];
+const navItems = ["About", "Projects", "Skills", "Certifications", "Resume", "Photography"];
 
 const TopNav = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +46,10 @@ const TopNav = () => {
                                 e.preventDefault();
                                 if (item === 'Resume') {
                                     window.open('https://drive.google.com/file/d/10o0OAMmTLDV5Nuj27DjlviyJvRFMJeue/view?usp=sharing', '_blank');
-                                } else {
+                                } else if (item === 'Photography') {
+                                    window.open('https://photography-muthu.vercel.app/', '_blank');
+                                }
+                                else {
                                     handleScroll(item.toLowerCase());
                                 }
                             }}>
@@ -87,6 +90,8 @@ const TopNav = () => {
                                         e.preventDefault();
                                         if (item === 'Resume') {
                                             window.open('https://drive.google.com/file/d/10o0OAMmTLDV5Nuj27DjlviyJvRFMJeue/view?usp=sharing', '_blank');
+                                        } else if (item === 'Photography') {
+                                            window.open('https://photography-muthu.vercel.app/', '_blank');
                                         } else {
                                             handleScroll(item.toLowerCase());
                                         }
