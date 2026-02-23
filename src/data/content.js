@@ -9,7 +9,8 @@ export const projects = [
     id: 2,
     name: "Agronomics",
     description: "Farm expense tracking, resource management, and disaster region identification for insurance claims.",
-    link: "https://github.com/muthuram07/Agronomics"
+    link: "https://github.com/muthuram07/Agronomics",
+    live: "https://agronomics.vercel.app/"
   },
   {
     id: 3,
@@ -21,7 +22,8 @@ export const projects = [
     id: 4,
     name: "CSR Denial Bot",
     description: "AI-driven chatbot that explains claim denial codes, reasons, solutions, and recovery strategies.",
-    link: "https://github.com/muthuram07/CSR"
+    link: "https://github.com/muthuram07/CSR",
+    live: "https://csr-bot.netlify.app/"
   },
   {
     id: 5,
@@ -29,6 +31,13 @@ export const projects = [
     description: "A modern React-based e‑commerce platform for millet products, integrating 5 distinct microservices with JWT-secured APIs.",
     link: "https://github.com/muthuram07/MithranMillets"
   },
+  {
+    id: 6,
+    name: "Photography-Portfolio",
+    description: "A curated digital exhibition designed to showcase professional photography through a minimalist interface and immersive full-screen layouts.",
+    link: "https://github.com/muthuram07/photography",
+    live: "https://photography-muthu.vercel.app/"
+  }
 ];
 
 export const about = [
@@ -71,6 +80,12 @@ export const certifications = [
   description: "Comprehensive knowledge of core Azure services, cloud concepts, security, compliance, and identity management.",
 }
 ,
+{
+  name: "Claude Code In Action",
+  description: "Demonstrated proficiency in streamlining development workflows and automating complex coding tasks using Claude’s specialized CLI tool.",
+  link: "https://drive.google.com/file/d/1AJbY-sCnOIQffXQjXMiOO2_41taoqhOv/view?usp=sharing",
+  provider: "Claude"
+},
   {
     name: "Fundamentals of JAVA — Amigoscode",
     link: "https://drive.google.com/file/d/10WaADbu2l5BorPzlAb2JKP4lMPsvgb5D/view?usp=sharing",
@@ -106,5 +121,5 @@ export const certifications = [
     link: "https://drive.google.com/file/d/1AwFVZYZUcXKcyJ9zlvKx5lVkrSfq0X6n/view?usp=sharing",
     provider: "Amigoscode",
     description: "Foundational knowledge in database management, queries, and SQL operations."
-  },
+  }
 ];

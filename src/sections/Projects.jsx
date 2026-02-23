@@ -27,27 +27,14 @@ export default function Projects() {
                   View Project →
                 </a>
 
-                {/* Conditional Live Demo for CSR Denial Bot */}
-                {p.name === 'CSR Denial Bot' && (
+                {p.live && (
                   <a 
-                    href="https://csr-bot.netlify.app/" 
+                    href={p.live} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     style={{ textDecoration: 'none', color: '#10b981', fontWeight: 'bold' }}
                   >
-                    Live Demo →
-                  </a>
-                )}
-
-                {/* Added Conditional Live Demo for Agronomics */}
-                {p.name === 'Agronomics' && (
-                  <a 
-                    href="https://agronomics.vercel.app/" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    style={{ textDecoration: 'none', color: '#10b981', fontWeight: 'bold' }}
-                  >
-                    Live Demo →
+                    Live →
                   </a>
                 )}
               </div>
