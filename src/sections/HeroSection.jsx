@@ -6,6 +6,7 @@ import { vars } from "../styles/theme.css";
 export default function HeroSection() {
   const words = [
     "Muthuraman",
+    "முத்துராமன்",
     "a Java Developer",
     "a Problem-Solver",
     "an Innovator",
