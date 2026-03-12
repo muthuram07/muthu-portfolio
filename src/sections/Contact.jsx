@@ -1,6 +1,6 @@
 import React from 'react';
 import { contact } from '../data/content.js';
-import { FaInstagram, FaGithub, FaLinkedin, FaEnvelope, FaPhone } from 'react-icons/fa';
+import { FaInstagram, FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import '../styles/grid.css';
 
 export default function Contact() {
@@ -25,7 +25,10 @@ export default function Contact() {
           </p>
 
           <div style={{ marginBottom: '2rem', color: '#6b7280', fontSize: '1.1rem' }}>
-            <p>📍 Madurai, Tamil Nadu</p>
+            <p>
+              <FaMapMarkerAlt style={{ marginRight: '0.5rem', color: '#0ea5e9' }} />
+              Madurai, Tamil Nadu
+            </p>
             <p>
               <FaPhone style={{ marginRight: '0.5rem', color: '#0ea5e9' }} />
               9087615536
