@@ -37,6 +37,12 @@ export const projects = [
     description: "A curated digital exhibition designed to showcase professional photography through a minimalist interface and immersive full-screen layouts.",
     link: "https://github.com/muthuram07/photography",
     live: "https://photography-muthu.vercel.app/"
+  },
+  {
+    id: 7,
+    name: "Thisai",
+    description: "A mobile application built through vibe coding to help backpackers support one another, discover better travel experiences, and explore destinations with practical community-driven features.",
+    link: "https://github.com/muthuram07/thisai"
   }
 ];
 
