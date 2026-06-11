@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   ArrowRight,
   Download,
   Github,
   Linkedin,
   Mail,
-  Sparkles,
 } from "lucide-react";
 import MyImage from "../assets/myphoto1.png";
 import { contact } from "../data/content.js";
@@ -18,38 +17,35 @@ const roles = [
   "Creative Thinker",
 ];
 
-const expertise = [
-  "Spring Boot",
-  "React",
-  "Microservices",
-  "Azure Fundamentals",
-];
+/* ── Typewriter cursor blink keyframes ── */
+const cursorKeyframes = `
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+`;
 
-const floatingCards = [
-  {
-    title: "Backend-first",
-    description: "Scalable APIs, clean architecture, reliable delivery",
-    position: {
-      top: "4%",
-      right: "-2%",
-    },
-  },
-  {
-    title: "Frontend polish",
-    description: "Responsive interfaces with motion and clarity",
-    position: {
-      bottom: "10%",
-      left: "-4%",
-    },
-  },
-];
+/* ── Gentle avatar ring rotation ── */
+const ringKeyframes = `
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+`;
 
-const panelStyle = {
-  background: "rgba(9, 14, 28, 0.72)",
-  border: `1px solid ${vars.colors.slateGrayTransparent}`,
-  boxShadow: `0 18px 80px rgba(5, 5, 5, 0.55), 0 0 0 1px ${vars.colors.indigoGlow}`,
-  backdropFilter: "blur(18px)",
-};
+/* ── Inject keyframes once ── */
+if (typeof document !== "undefined") {
+  const id = "__hero-keyframes";
+  if (!document.getElementById(id)) {
+    const style = document.createElement("style");
+    style.id = id;
+    style.textContent = cursorKeyframes + ringKeyframes;
+    document.head.appendChild(style);
+  }
+}
+
+/* ── Stagger helper ── */
+const stagger = (i) => ({ delay: 0.12 + i * 0.1, duration: 0.6, ease: "easeOut" });
 
 export default function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -58,26 +54,24 @@ export default function HeroSection() {
 
   useEffect(() => {
     const currentRole = roles[roleIndex % roles.length];
-    const step = isDeleting ? 45 : 95;
+    const speed = isDeleting ? 40 : 90;
 
     const timeout = window.setTimeout(() => {
       if (!isDeleting) {
-        const nextText = currentRole.slice(0, displayText.length + 1);
-        setDisplayText(nextText);
-
-        if (nextText === currentRole) {
-          window.setTimeout(() => setIsDeleting(true), 1100);
+        const next = currentRole.slice(0, displayText.length + 1);
+        setDisplayText(next);
+        if (next === currentRole) {
+          window.setTimeout(() => setIsDeleting(true), 1400);
         }
       } else {
-        const nextText = currentRole.slice(0, Math.max(displayText.length - 1, 0));
-        setDisplayText(nextText);
-
-        if (nextText === "") {
+        const next = currentRole.slice(0, Math.max(displayText.length - 1, 0));
+        setDisplayText(next);
+        if (next === "") {
           setIsDeleting(false);
-          setRoleIndex((current) => current + 1);
+          setRoleIndex((c) => c + 1);
         }
       }
-    }, step);
+    }, speed);
 
     return () => window.clearTimeout(timeout);
   }, [displayText, isDeleting, roleIndex]);
@@ -87,126 +81,167 @@ export default function HeroSection() {
       id="home"
       style={{
         minHeight: "calc(100vh - 88px)",
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-        gap: "3rem",
+        display: "flex",
         alignItems: "center",
+        justifyContent: "center",
         padding: "5rem clamp(1.5rem, 4vw, 4rem) 4rem",
         position: "relative",
         zIndex: 1,
       }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 32 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
         style={{
-          maxWidth: "680px",
           display: "flex",
           flexDirection: "column",
-          gap: "1.5rem",
+          alignItems: "center",
+          gap: "1.8rem",
+          maxWidth: "720px",
+          textAlign: "center",
         }}
       >
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "0.65rem",
-            width: "fit-content",
-            padding: "0.7rem 1rem",
-            borderRadius: "999px",
-            color: vars.colors.pureWhite,
-            background: "rgba(99, 102, 241, 0.12)",
-            border: `1px solid ${vars.colors.indigoGlow}`,
-            fontSize: "0.92rem",
-          }}
-        >
-          <Sparkles size={16} color={vars.colors.cyberTurquoise} />
-          Building resilient products with code, systems, and design discipline
-        </div>
-
-        <div style={{ display: "grid", gap: "1rem" }}>
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.7 }}
-            style={{
-              margin: 0,
-              fontSize: "clamp(3rem, 7vw, 5.9rem)",
-              lineHeight: 0.96,
-              letterSpacing: "-0.05em",
-              color: vars.colors.pureWhite,
-            }}
-          >
-            Muthuraman builds
-            <span
-              style={{
-                display: "block",
-                marginTop: "0.45rem",
-                color: vars.colors.cyberTurquoise,
-                textShadow: `0 0 28px ${vars.colors.cyberTurquoiseTransparent}`,
-              }}
-            >
-              {displayText || roles[0]}
-              <span style={{ color: vars.colors.electricIndigo }}>|</span>
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.18, duration: 0.7 }}
-            style={{
-              margin: 0,
-              maxWidth: "60ch",
-              fontSize: "clamp(1rem, 2vw, 1.15rem)",
-              lineHeight: 1.8,
-              color: vars.colors.slateGray,
-            }}
-          >
-            I am an early-career developer focused on building clean, reliable web
-            applications with Java, Spring Boot, and React. I care about writing
-            maintainable code, learning fast, and creating user experiences that
-            feel clear, useful, and polished.
-          </motion.p>
-        </div>
-
+        {/* ── Avatar ── */}
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.26, duration: 0.7 }}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "0.75rem",
-          }}
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={stagger(0)}
+          style={{ position: "relative", width: "150px", height: "150px" }}
         >
-          {expertise.map((item) => (
-            <span
-              key={item}
+          {/* Rotating gradient ring */}
+          <div
+            style={{
+              position: "absolute",
+              inset: "-4px",
+              borderRadius: "50%",
+              padding: "3px",
+              background: `conic-gradient(
+                ${vars.colors.cyberTurquoise},
+                ${vars.colors.electricIndigo},
+                ${vars.colors.cyberTurquoise}
+              )`,
+              animation: "ring-rotate 6s linear infinite",
+            }}
+          >
+            <div
               style={{
-                padding: "0.7rem 1rem",
-                borderRadius: "999px",
-                border: `1px solid ${vars.colors.slateGrayTransparent}`,
-                background: "rgba(15, 23, 42, 0.55)",
-                color: vars.colors.pureWhite,
-                fontSize: "0.92rem",
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                background: vars.colors.obsidian,
               }}
-            >
-              {item}
-            </span>
-          ))}
+            />
+          </div>
+
+          {/* Photo */}
+          <img
+            src={MyImage}
+            alt="Muthuraman"
+            style={{
+              position: "absolute",
+              inset: "0",
+              width: "100%",
+              height: "100%",
+              borderRadius: "50%",
+              objectFit: "cover",
+              objectPosition: "center top",
+              display: "block",
+            }}
+          />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
+        {/* ── Greeting line ── */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.34, duration: 0.7 }}
+          transition={stagger(1)}
+          style={{
+            margin: 0,
+            fontSize: "1rem",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            color: vars.colors.cyberTurquoise,
+            fontWeight: 600,
+          }}
+        >
+          Hello, I'm
+        </motion.p>
+
+        {/* ── Name ── */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={stagger(2)}
+          style={{
+            margin: 0,
+            fontSize: "clamp(2.6rem, 6vw, 4.5rem)",
+            lineHeight: 1.05,
+            letterSpacing: "-0.04em",
+            color: vars.colors.pureWhite,
+            fontWeight: 800,
+          }}
+        >
+          Muthuraman S
+        </motion.h1>
+
+        {/* ── Typewriter role ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={stagger(3)}
+          style={{
+            fontSize: "clamp(1.15rem, 2.5vw, 1.5rem)",
+            fontWeight: 500,
+            color: vars.colors.slateGray,
+            minHeight: "2em",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "2px",
+          }}
+        >
+          <span>{displayText}</span>
+          <span
+            style={{
+              display: "inline-block",
+              width: "2px",
+              height: "1.2em",
+              marginLeft: "2px",
+              background: vars.colors.electricIndigo,
+              animation: "blink 0.8s step-end infinite",
+            }}
+          />
+        </motion.div>
+
+        {/* ── Bio ── */}
+        <motion.p
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={stagger(4)}
+          style={{
+            margin: 0,
+            maxWidth: "54ch",
+            fontSize: "clamp(0.95rem, 1.8vw, 1.08rem)",
+            lineHeight: 1.8,
+            color: vars.colors.slateGray,
+          }}
+        >
+          Focused on building clean, reliable web applications with Java,
+          Spring Boot, and React. I care about maintainable code, fast
+          learning, and creating user experiences that feel clear and polished.
+        </motion.p>
+
+        {/* ── CTA Buttons ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={stagger(5)}
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "1rem",
-            alignItems: "center",
+            gap: "0.9rem",
+            justifyContent: "center",
           }}
         >
           <a
@@ -214,17 +249,28 @@ export default function HeroSection() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.65rem",
-              padding: "0.95rem 1.35rem",
+              gap: "0.6rem",
+              padding: "0.85rem 1.6rem",
               borderRadius: "999px",
-              color: vars.colors.obsidian,
-              background: `linear-gradient(135deg, ${vars.colors.cyberTurquoise}, #8b5cf6)`,
               fontWeight: 700,
-              boxShadow: "0 16px 36px rgba(34, 211, 238, 0.22)",
+              fontSize: "0.95rem",
+              color: vars.colors.obsidian,
+              background: `linear-gradient(135deg, ${vars.colors.cyberTurquoise}, ${vars.colors.electricIndigo})`,
+              boxShadow: `0 8px 28px rgba(34, 211, 238, 0.22)`,
+              textDecoration: "none",
+              transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 12px 36px rgba(34, 211, 238, 0.32)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 8px 28px rgba(34, 211, 238, 0.22)";
             }}
           >
-            Photography
-            <ArrowRight size={18} />
+            View Projects
+            <ArrowRight size={17} />
           </a>
 
           <a
@@ -234,220 +280,118 @@ export default function HeroSection() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "0.65rem",
-              padding: "0.95rem 1.35rem",
+              gap: "0.6rem",
+              padding: "0.85rem 1.6rem",
               borderRadius: "999px",
+              fontWeight: 600,
+              fontSize: "0.95rem",
               color: vars.colors.pureWhite,
               background: "rgba(255, 255, 255, 0.04)",
               border: `1px solid ${vars.colors.slateGrayTransparent}`,
+              textDecoration: "none",
+              transition: "border-color 0.2s ease, background 0.2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = vars.colors.electricIndigo;
+              e.currentTarget.style.background = "rgba(99, 102, 241, 0.08)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = vars.colors.slateGrayTransparent;
+              e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
             }}
           >
-            Download Resume
-            <Download size={18} />
+            Resume
+            <Download size={17} />
           </a>
-
-          <div style={{ display: "flex", gap: "0.7rem" }}>
-            {[
-              { href: contact.github, label: "GitHub", icon: Github },
-              { href: contact.linkedin, label: "LinkedIn", icon: Linkedin },
-              { href: contact.email, label: "Email", icon: Mail },
-            ].map(({ href, label, icon: Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target={href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
-                aria-label={label}
-                style={{
-                  width: "48px",
-                  height: "48px",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: "50%",
-                  color: vars.colors.pureWhite,
-                  background: "rgba(255, 255, 255, 0.04)",
-                  border: `1px solid ${vars.colors.slateGrayTransparent}`,
-                }}
-              >
-                <Icon size={20} />
-              </a>
-            ))}
-          </div>
         </motion.div>
 
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 24 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-        style={{
-          position: "relative",
-          minHeight: "520px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {floatingCards.map((card) => (
-          <motion.div
-            key={card.title}
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            style={{
-              ...panelStyle,
-              position: "absolute",
-              width: "min(240px, 44vw)",
-              padding: "1rem 1.1rem",
-              borderRadius: "20px",
-              zIndex: 2,
-              ...card.position,
-            }}
-          >
-            <div
-              style={{
-                color: vars.colors.pureWhite,
-                fontWeight: 700,
-                marginBottom: "0.35rem",
-              }}
-            >
-              {card.title}
-            </div>
-            <div style={{ color: vars.colors.slateGray, lineHeight: 1.6 }}>
-              {card.description}
-            </div>
-          </motion.div>
-        ))}
-
-        <div
+        {/* ── Social Links ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={stagger(6)}
           style={{
-            ...panelStyle,
-            width: "min(420px, 100%)",
-            padding: "1.4rem",
-            borderRadius: "28px",
-            position: "relative",
-            overflow: "hidden",
+            display: "flex",
+            gap: "0.7rem",
+            marginTop: "0.2rem",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              inset: "-35% auto auto 10%",
-              width: "220px",
-              height: "220px",
-              borderRadius: "50%",
-              background: "rgba(34, 211, 238, 0.16)",
-              filter: "blur(24px)",
-            }}
-          />
+          {[
+            { href: contact.github, label: "GitHub", icon: Github },
+            { href: contact.linkedin, label: "LinkedIn", icon: Linkedin },
+            { href: contact.email, label: "Email", icon: Mail },
+          ].map(({ href, label, icon: Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target={href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
+              aria-label={label}
+              style={{
+                width: "44px",
+                height: "44px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "50%",
+                color: vars.colors.slateGray,
+                background: "transparent",
+                border: `1px solid ${vars.colors.slateGrayTransparent}`,
+                textDecoration: "none",
+                transition: "color 0.2s ease, border-color 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = vars.colors.cyberTurquoise;
+                e.currentTarget.style.borderColor = vars.colors.cyberTurquoise;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = vars.colors.slateGray;
+                e.currentTarget.style.borderColor = vars.colors.slateGrayTransparent;
+              }}
+            >
+              <Icon size={19} />
+            </a>
+          ))}
+        </motion.div>
 
-          <div
+        {/* ── Scroll indicator ── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          transition={{ delay: 1.6, duration: 0.8 }}
+          style={{
+            marginTop: "1.5rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "0.4rem",
+          }}
+        >
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
             style={{
-              position: "relative",
-              display: "grid",
-              gap: "1.2rem",
+              width: "20px",
+              height: "32px",
+              borderRadius: "999px",
+              border: `1.5px solid ${vars.colors.slateGray}`,
+              display: "flex",
+              justifyContent: "center",
+              paddingTop: "6px",
             }}
           >
-            <div
+            <motion.div
+              animate={{ opacity: [1, 0.2, 1], y: [0, 8, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: "1rem",
+                width: "3px",
+                height: "6px",
+                borderRadius: "999px",
+                background: vars.colors.slateGray,
               }}
-            >
-              <div>
-                <div
-                  style={{
-                    color: vars.colors.pureWhite,
-                    fontSize: "1.3rem",
-                    fontWeight: 700,
-                  }}
-                >
-                  Developer Profile
-                </div>
-                <div style={{ color: vars.colors.slateGray, marginTop: "0.25rem" }}>
-                  Based in Tamil Nadu, building for the web
-                </div>
-              </div>
-              <div
-                style={{
-                  padding: "0.45rem 0.8rem",
-                  borderRadius: "999px",
-                  background: "rgba(34, 211, 238, 0.12)",
-                  color: vars.colors.cyberTurquoise,
-                  fontWeight: 700,
-                  fontSize: "0.82rem",
-                }}
-              >
-                Open to roles
-              </div>
-            </div>
-
-            <div
-              style={{
-                borderRadius: "24px",
-                overflow: "hidden",
-                border: `1px solid ${vars.colors.slateGrayTransparent}`,
-                background:
-                  "linear-gradient(180deg, rgba(99, 102, 241, 0.18), rgba(15, 23, 42, 0.35))",
-              }}
-            >
-              <img
-                src={MyImage}
-                alt="Muthuraman portrait"
-                style={{
-                  width: "100%",
-                  height: "360px",
-                  objectFit: "cover",
-                  objectPosition: "center top",
-                  display: "block",
-                }}
-              />
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                gap: "0.85rem",
-              }}
-            >
-              <div
-                style={{
-                  padding: "1rem",
-                  borderRadius: "18px",
-                  background: "rgba(255, 255, 255, 0.04)",
-                  border: `1px solid ${vars.colors.slateGrayTransparent}`,
-                }}
-              >
-                <div style={{ color: vars.colors.slateGray, marginBottom: "0.35rem" }}>
-                  Current focus
-                </div>
-                <div style={{ color: vars.colors.pureWhite, fontWeight: 600 }}>
-                  Cloud-ready Java systems
-                </div>
-              </div>
-
-              <div
-                style={{
-                  padding: "1rem",
-                  borderRadius: "18px",
-                  background: "rgba(255, 255, 255, 0.04)",
-                  border: `1px solid ${vars.colors.slateGrayTransparent}`,
-                }}
-              >
-                <div style={{ color: vars.colors.slateGray, marginBottom: "0.35rem" }}>
-                  Preferred stack
-                </div>
-                <div style={{ color: vars.colors.pureWhite, fontWeight: 600 }}>
-                  Java, Spring Boot, React
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            />
+          </motion.div>
+        </motion.div>
       </motion.div>
     </section>
   );
