@@ -29,7 +29,8 @@ export const projects = [
     id: 5,
     name: "Mithran Millets (E‑commerce)",
     description: "A modern React-based e‑commerce platform for millet products, integrating 5 distinct microservices with JWT-secured APIs.",
-    link: "https://github.com/muthuram07/MithranMillets"
+    link: "https://github.com/muthuram07/MithranMillets",
+    live: "https://mithran-frontend.onrender.com"
   },
   {
     id: 6,
